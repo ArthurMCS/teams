@@ -10,6 +10,6 @@ export const Message = styled.Text`
     text-align: center;
 
     font-size: ${({ theme }) => theme.FONT_SIZE.XL}px;
-    font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR}px;
+    font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
     color: ${({ theme }) => theme.COLORS.GRAY_300}; 
 `;

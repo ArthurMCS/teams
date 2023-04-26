@@ -4,6 +4,7 @@ import theme from "@theme/index";
 import { ThemeProvider } from "styled-components";
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from "@expo-google-fonts/roboto";
 import Laoding from "@components/Loading";
+import NewGroup from "@screens/NewGroup";
 
 
 export default function App() {
@@ -18,7 +19,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <Groups /> : <Laoding />}
+      {fontsLoaded ? <NewGroup /> : <Laoding />}
     </ThemeProvider>
   );
 }
