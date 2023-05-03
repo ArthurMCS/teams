@@ -1,5 +1,5 @@
 import Header from '@components/Header';
-import { Container } from './style';
+import { Container } from './styles';
 import HighLight from '@components/Highlight';
 import GroupCard from '@components/GroupCard';
 import { useState } from 'react';
@@ -12,7 +12,7 @@ export function Groups() {
 
     return (
         <Container>
-            <Header />
+            <Header showBackButton />
             <HighLight title='Turmas' subtitle='jogue com a sua turma' />
 
             <FlatList 
