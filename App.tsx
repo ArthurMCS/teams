@@ -3,8 +3,7 @@ import theme from "@theme/index";
 import { ThemeProvider } from "styled-components";
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from "@expo-google-fonts/roboto";
 import Laoding from "@components/Loading";
-import NewGroup from "@screens/NewGroup";
-import Players from "@screens/Players";
+import { Routes } from './src/routes';
 
 
 export default function App() {
@@ -19,7 +18,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <Players /> : <Laoding />}
+      {fontsLoaded ? <Routes /> : <Laoding />}
     </ThemeProvider>
   );
 }
