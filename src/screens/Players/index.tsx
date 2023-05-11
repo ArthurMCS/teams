@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import Header from '@components/Header';
 import HighLight from '@components/Highlight';
@@ -19,6 +19,7 @@ import { playerAddByGroup } from '@storage/player/playerAddByGroup';
 import { playersGetByGroupAndTeam } from '@storage/player/playersGetByGroupAndTeams';
 import { PlayerStorageDTO } from '@storage/player/playerStorageDTO';
 import { playerRemoveByGroup } from '@storage/player/playerRemoveByGroup';
+import { groupRemoveByName } from '@storage/group/groupRemove';
 
 
 type RouteParams = {
@@ -31,6 +32,8 @@ export default function Players() {
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
 
   const  route = useRoute();
+
+  const navigation = useNavigation()
 
   const { group } = route.params as RouteParams;
 
@@ -84,6 +87,28 @@ export default function Players() {
       console.log(error);
       Alert.alert('Remover pessoa', 'Não foi possível remover esta pessoa.')
     }
+  }
+
+
+  async function groupRemove() {
+    try {
+      await groupRemoveByName(group);
+      navigation.navigate('groups');
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Remover pessoa', 'Não foi possível remover o grupo.')
+    }
+  }
+
+  async function handleGroupRemove(){
+    Alert.alert(
+      'Remover', 
+      'Deseja remover o grupo?',
+      [
+        {text: 'Não', style: 'cancel'},
+        {text: 'Sim', onPress: () => { groupRemove() }}
+      ]
+    )
   }
 
   useEffect(() => {
@@ -153,6 +178,7 @@ export default function Players() {
         <Button
           title="Remover item"
           type="SECONDARY"
+          onPress={handleGroupRemove}
         />    
     </Container>
   )
