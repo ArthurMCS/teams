@@ -18,7 +18,7 @@ export function Groups() {
 
     const handleNewGroup = () => {
         navigation.navigate('new')
-    }
+    };
 
     const fetchGroups = async () => {
         try {
@@ -27,11 +27,11 @@ export function Groups() {
         } catch (error) {
             console.log(error)
         }
-    }
+    };
 
     useFocusEffect(useCallback(() => {
         fetchGroups()
-    }, []))
+    }, []));
 
     return (
         <Container>
