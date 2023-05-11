@@ -33,6 +33,10 @@ export function Groups() {
         fetchGroups()
     }, []));
 
+    const handleOpenGroup = (group: string) => {
+        navigation.navigate('players', { group })
+    }
+
     return (
         <Container>
             <Header showBackButton />
@@ -43,7 +47,8 @@ export function Groups() {
                 keyExtractor={item => item}
                 renderItem={({ item }) => (
                     <GroupCard 
-                        title={item} 
+                        title={item}
+                        onPress={() => handleOpenGroup(item)}
                     />
                 )}
                 contentContainerStyle={groups.length === 0 && { flex: 1 }}
