@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, LoadIndicator } from './styles'
 
-export default function Laoding() {
+export default function Loading() {
   return (
     <Container>
         <LoadIndicator />

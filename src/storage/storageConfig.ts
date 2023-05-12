@@ -1,7 +1,4 @@
-const GROUP_COLLECTION = '@teams:groups';
-const PLAYER_COLLECTION = '@teams:players';
+const GROUP_COLLECTION = '@ignite-teams:groups';
+const PLAYER_COLLECTION = '@ignite-teams:players';
 
-export {
-    GROUP_COLLECTION,
-    PLAYER_COLLECTION 
-}
+export { GROUP_COLLECTION, PLAYER_COLLECTION }

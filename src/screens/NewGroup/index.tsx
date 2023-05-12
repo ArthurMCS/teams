@@ -1,62 +1,64 @@
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { Alert } from "react-native";
 
-import Header from '@components/Header';
-import HighLight from '@components/Highlight';
-import Button from '@components/Button';
-import Input from '@components/Input';
+import { AppError } from "@utils/AppError";
+import { groupCreate } from "@storage/group/groupCreate";
 
-import { groupCreate } from '@storage/group/groupCreate';
+import { Container, Content, Icon } from "./styles";
 
-import { Container, Content, Icon } from './styles';
-import { Alert } from 'react-native';
-import { AppError } from '@utils/AppError';
+import Header from "@components/Header";
+import Button from "@components/Button";
+import Highlight from "@components/HighLight";
+import Input from "@components/Input";
 
-export default function NewGroup() {
-  const [ group, setGroup ] = useState('')
+export function NewGroup() {
+  const [group, setGroup] = useState('');
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
-  const handleNew = async () => {
+  async function handleNew() {
     try {
+
       if(group.trim().length === 0) {
-        return Alert.alert('Novo Grupo', 'Informe o nome da turma.')
+        return Alert.alert('Novo Grupo', 'Informe o nome da turma.');
       }
 
       await groupCreate(group);
       navigation.navigate('players', { group });
     } catch (error) {
-
       if(error instanceof AppError) {
-        Alert.alert('Novo Grupo', error.message)
+        Alert.alert('Novo Grupo', error.message);
       } else {
-        Alert.alert('Novo Grupo', 'Não foi possível criar um novo grupo.')
-        console.log(error);  
+        Alert.alert('Novo Grupo', 'Não foi possível criar um novo grupo.');
+        console.log(error);
       }
     }
   }
 
   return (
     <Container>
-        <Header showBackButton />
-        <Content>
-            <Icon />
-            <HighLight
-                title='Nova Turma'
-                subtitle='crie a turma para adicionar as pessoas'
-            />
+      <Header showBackButton />
 
-            <Input
-              placeholder="Nome da Turma"
-              onChangeText={setGroup}
-            />
+      <Content>
+        <Icon />
+        
+        <Highlight 
+          title="Nova turma"
+          subtitle="crie a turma para adicionar as pessoas"
+        />
 
-            <Button 
-              title='Criar'
-              style={{ marginTop: 20 }}
-              onPress={ handleNew }
-            />
-        </Content>
+        <Input
+          placeholder="Nome da turma"
+          onChangeText={setGroup}
+        />
+
+        <Button 
+          title="Criar"
+          style={{ marginTop: 20 }}
+          onPress={handleNew}
+        />
+      </Content>
     </Container>
   )
 }
